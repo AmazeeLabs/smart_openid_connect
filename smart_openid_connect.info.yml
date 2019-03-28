@@ -1,0 +1,5 @@
+name: Smart OpenID Connect
+type: module
+description: Plugin for Daimler OpenID system
+core: 8.x
+package: Other

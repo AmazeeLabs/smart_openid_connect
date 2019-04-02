@@ -3,3 +3,5 @@ type: module
 description: Plugin for Daimler OpenID system
 core: 8.x
 package: Other
+dependencies:
+  - drupal:openid_connect

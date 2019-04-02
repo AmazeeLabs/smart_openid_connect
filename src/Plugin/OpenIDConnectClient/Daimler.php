@@ -21,7 +21,10 @@ class Daimler extends OpenIDConnectClientBase {
   /**
    * {@inheritdoc}
    */
-  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
+  public function buildConfigurationForm(
+    array $form,
+    FormStateInterface $form_state
+  ) {
     $form = parent::buildConfigurationForm($form, $form_state);
 
     $form['authorization_endpoint'] = [
@@ -81,16 +84,16 @@ class Daimler extends OpenIDConnectClientBase {
 
       $response_data = json_decode((string) $response->getBody(), TRUE);
 
-      if(!array_key_exists('sub', $response_data)) {
+      if (!array_key_exists('sub', $response_data)) {
         throw new \Exception("No subject returned from call");
       }
 
       return [
-          'sub' => $response_data['sub'],
-          'email' => $response_data['sub'] . "@daimler.com" //TODO: this should come from the userinfo endpoint
+        'sub' => $response_data['sub'],
+        'email' => $response_data['sub'] . "@openidconnecttest.dev"
+        //TODO: this should come from the userinfo endpoint
       ];
-    }
-    catch (Exception $e) {
+    } catch (Exception $e) {
       $variables = [
         '@message' => 'Could not retrieve user profile information',
         '@error_message' => $e->getMessage(),
